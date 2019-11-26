@@ -304,8 +304,10 @@ It is often very useful to debug your API calls by viewing the raw HTTP request.
 ```php
 // FOR DEBUGGING ONLY
 $httpClient = new GuzzleHttp\Client([
-    'proxy' => 'localhost:8888', // by default, Charles runs on localhost port 8888
-    'verify' => false, // otherwise HTTPS requests will fail.
+    'defaults' => [
+        'proxy' => 'localhost:8888', // by default, Charles runs on localhost port 8888
+        'verify' => false, // otherwise HTTPS requests will fail.
+    ]
 ]);
 
 $client = new Google_Client();
@@ -326,8 +328,10 @@ Let's say, for instance, we wished to apply a referrer to each request.
 use GuzzleHttp\Client;
 
 $httpClient = new Client([
-    'headers' => [
-        'referer' => 'mysite.com'
+    'defaults' => [
+        'headers' => [
+            'referer' => 'mysite.com'
+        ]
     ]
 ]);
 
